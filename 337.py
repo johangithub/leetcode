@@ -28,6 +28,22 @@ Example 2:
 Maximum amount of money the thief can rob = 4 + 5 = 9. 
 """
 
-def rob(root):
-    return
-    
+class Solution:
+    def rob(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        res = self.robSub(root)
+        return max(res)
+
+    def robSub(self, root):
+        if not root:
+            return [0, 0]
+
+        left = self.robSub(root.left)
+        right = self.robSub(root.right)
+        res = [0,0]
+        res[0] = max(left) + max(right)
+        res[1] = root.val + left[0] + right[0]
+        return res

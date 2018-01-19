@@ -36,9 +36,3 @@ def numIslands(grid):
         return 0
     return sum(dfs(i,j) for i in range(len(grid)) for j in range(len(grid[0])))
 print(numIslands(grid))
-
-def func(i,j):
-    return i+j
-
-print(list(map(func, (0,1,2,3), (1,2,3,4))))
-
