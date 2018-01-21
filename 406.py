@@ -15,11 +15,17 @@ Output:
 """
 people = [[5,0], [6,1], [7,0], [4,4], [7,1], [5,2]]
 def reconstructQueue(people):
-    people.sort(key=lambda x: x[0])
-    print(people)
-    for q in people:
-        print(q)
-    return
+    res = []
+    for p in sorted((-x[0], x[1]) for x in people):
+        res.insert(p[1], [-p[0], p[1]])
+    return res
 
-reconstructQueue(people[:3])
+"""
+Explanation and solution from @SergeyTachenov:
+Imagine you only had the tallest people. Then the you would sort them based on the second index,
+since they only see themselves and themselves only. e.g. [[7, 0], [7, 1], ... ]
+Then the next tallest group, and the second index would indicate exactly where they should be.
+and so on and on.
+The second part was confusing at first, but playing with it and writing it down on paper made it easier to understand.
 
+"""
