@@ -11,16 +11,10 @@ class Solution:
         :type root: TreeNode
         :rtype: int
         """
-        d={}
         if not root:
             return 0
         levels = []
-        def dfs(node,level):
-            if level in d:
-                d[level].append(node.val)
-            else:
-                d[level] = [node.val]
-            
+        def dfs(node,level):            
             if node.left:
                 dfs(node.left, level+1)
             if node.right:
