@@ -47,3 +47,7 @@ runs.append({'S': "a1b2"})
 runs.append({'S': "3z4"})
 runs.append({'S': "12345"})
 Solution(runs)
+
+warmup typing
+for i in range(len(s)):
+from collections import Counter

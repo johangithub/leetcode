@@ -28,3 +28,40 @@ class Solution:
         :rtype: int
         """
         return sum([1 for x in S if x in J])
+
+
+def b_search(l, target):
+    lo = 0
+    hi = len(l) -1
+    while lo < hi:
+        mid = (hi+lo)//2
+        if l[mid]<target:
+            lo = mid+1
+        else:
+            hi = mid
+    return lo,l[lo]
+
+print(b_search([4,8,9,10,24,32,45,56],32))
+
+def editDistance(s1,s2):
+    if len(s1)==0:
+        return len(s2)
+    if len(s2) ==0:
+        return len(s1)
+
+    #dp[i][j] represents the minimum edit distance of string upto s1[:i] and s2[:j]
+    dp = [[0] * (len(s2)+1) for _ in range(len(s1)+1)] 
+    for i in range(len(s1)+1):
+        for j in range(len(s2)+1):
+            if i==0:
+                dp[i][j] = j
+            if j==0:
+                dp[i][j] = i           
+            if s1[i-1]==s2[j-1]:
+                dp[i][j] = dp[i-1][j-1]
+            else:
+                dp[i][j] = min(dp[i][j-1], dp[i-1][j], dp[i-1][j-1]) + 1
+
+    return dp[-1][-1]
+
+print(editDistance("hello", "hallo"))
